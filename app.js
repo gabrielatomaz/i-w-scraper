@@ -1,9 +1,10 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
-var cors = require('cors');
+const cors = require('cors');
 const { loginScrapper } = require("./services/w-scraper");
+
 const app = express();
-var bodyParser = require('body-parser')
 
 app.use(bodyParser.json());
 app.use(cors());
