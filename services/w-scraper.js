@@ -1,7 +1,8 @@
 const puppeteer = require('puppeteer');
 
-const loginScrapper = async (account) => {
+const loginScraper = async (account) => {
     try {
+        console.log(account);
         let { page, browser } = await config();
 
         page = await login(page, account);
@@ -9,7 +10,7 @@ const loginScrapper = async (account) => {
         await page.click("#acessar");
 
         await page.waitFor(15000);
-
+        
         await browser.close();
     } catch (error) {
         console.log(error);
@@ -47,9 +48,9 @@ const login = async (page, account) => {
         await page.waitFor(500);
 
         await page.click('#btnLoginSubmit');
-
+        
         await page.waitFor(15000);
-
+        
         page = await setPassword(page, account.password);
 
         return page;
@@ -87,4 +88,4 @@ const setPassword = async (page, password) => {
     }
 }
 
-module.exports = { loginScrapper };
+module.exports = { loginScraper };
