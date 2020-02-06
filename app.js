@@ -15,10 +15,10 @@ app.get('/', async (req, res, next) => {
 //account = { agency, number, password };
 app.post('/api/login', (req, res, next) => {
     const account = req.body;
-    
-    loginScrapper(account)
-    .then(() => res.send({ success: true }))
-    .catch(next);
+    res.send({ success: true });
+    // loginScrapper(account)
+    // .then(() => res.send({ success: true }))
+    // .catch(next);
 });
 
 app.listen(3003, () => { });
