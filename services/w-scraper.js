@@ -10,8 +10,6 @@ const loginScrapper = async (account) => {
 
         await page.waitFor(15000);
 
-        await page.screenshot({ path: 'example.png' });
-
         await browser.close();
     } catch (error) {
         console.log(error);

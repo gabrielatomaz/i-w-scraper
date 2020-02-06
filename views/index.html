@@ -16,13 +16,15 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
 </head>
 
 <body>
     <div class="d-flex justify-content-center" style="margin-top: 15%;">
         <div class="card" style="width: 24rem;">
             <div class="card-body">
-                    <h5 class="card-title">Banco Itaú</h5>
+                <h5 class="card-title">Banco Itaú</h5>
                 <form>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Agência e conta</label>
@@ -33,12 +35,29 @@
                         <label>Senha</label>
                         <input type="password" class="form-control" id="password" placeholder="Senha">
                     </div>
-                    <button type="submit" class="btn btn-block btn-primary">Entrar</button>
+                    <button type="submit" id="submit" class="btn btn-block btn-primary">Entrar</button>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+        $("#submit").on('click', (e) => {
+            e.preventDefault();
+            const agency_account = new String($("#agency_account").val()).split("/");
+            const account = {
+                agency: agency_account[0],
+                number: agency_account[1],
+                password: $("#password").val()
+            };
 
+            console.log(account);
+            $.post("http://localhost:3003/login", { account })
+                .done(function (data) {
+                    console.log(data);
+                });
+        });
+
+    </script>
 </body>
 
 </html>
