@@ -21,71 +21,27 @@
 </head>
 
 <body>
-    <div class="d-flex justify-content-center" style="margin-top: 15%;">
+    <div class="d-flex justify-content-center" style="margin-top: 13%;">
         <div class="card" style="width: 24rem;">
+            <img class="card-img-top" src="https://i.pinimg.com/originals/4a/34/de/4a34deddc3bf72fff6e3e8723a631f59.jpg"
+                alt="Card image cap">
             <div class="card-body">
-                <div class="alert text-center alert-danger alert-dismissible">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    Ops! Ocorreu algum ao tentar se autenticar na sua conta.
-                </div>
-                <div class="d-flex align-items-center">
-                    <h5 class="card-title">Banco Itaú</h5>
-                    <div class="spinner-border ml-auto" id="loader" style="display: none;" role="status"
-                        aria-hidden="true"></div>
-                </div>
-                <form>
-                    <div class="form-group" id="form">
-                        <label for="exampleInputEmail1">Agência e conta</label>
-                        <input type="tel" class="form-control" id="agency_account" aria-describedby="emailHelp"
-                            placeholder="9999 99999-9" minlength="12" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Senha</label>
-                        <input type="password" class="form-control" minlength="6" id="password" placeholder="Senha"
-                            required>
-                    </div>
-                    <button type="submit" id="submit" class="btn btn-block btn-primary">Entrar</button>
-                </form>
+                <h5 class="card-title" id="name"></h5>
+                <p class="card-text" id="balance"></p>
             </div>
         </div>
     </div>
     <script>
         $(() => {
-            $("#agency_account").mask('0000 00000-0');
-            $("#password").mask('000000');
-            $(".alert").hide();
-        });
-
-        $("#submit").on('click', (e) => {
-            if ($("#agency_account").val().length < 12)
-                return;
-            else if ($("#password").val().length < 6)
-                return;
-
-            $("#loader").show();
-            e.preventDefault();
-
-            const agency_account = new String($("#agency_account").val()).split(" ");
-            const account = {
-                agency: agency_account[0],
-                number: agency_account[1],
-                password: $("#password").val()
-            };
-
             $.ajax({
                 contentType: 'application/json',
-                data: JSON.stringify(account),
                 dataType: 'json',
-                success: function (data) {
-                    $("#loader").hide();
+                success: (data) => {
+                    $("#name").html(data.user.name);
+                    $("#balance").html(`<h5>O seu saldo atual é:</h5> <h4 class="text-center text-success">${data.user.balance}</h4>`);
                 },
-                error: function () {
-                    $("#loader").hide();
-                    $(".alert").show();
-                },
-                processData: false,
-                type: 'POST',
-                url: '/api/login'
+                type: 'GET',
+                url: '/api/infos'
             });
         });
 
