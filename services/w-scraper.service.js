@@ -9,7 +9,7 @@ const loginScraper = async (account) => {
 
         await page.click('#acessar');
 
-        await page.waitFor(13000);
+        await page.waitFor(17000);
 
         const { newPage, name, balance } = await accountInfos(page);
 
