@@ -1,4 +1,4 @@
-# W-I-SCRAPER
+# I-W-SCRAPER
 
 A aplicação realiza a autenticação no Banco Itaú e apresenta o nome do proprietário e também seu saldo atual. 
 
