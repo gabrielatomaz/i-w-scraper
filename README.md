@@ -13,6 +13,7 @@ A aplicação realiza a autenticação no Banco Itaú e apresenta o nome do prop
 - Teste disponível para validar o título da página
 - Arquitetura MVC
 - Session com cookies (cookie-parser)
+- A autenticação acaba sendo demorada para acompanhar o tempo de espera da página do Itaú
 
 ### Para rodar a aplicação
 
@@ -20,4 +21,3 @@ A aplicação realiza a autenticação no Banco Itaú e apresenta o nome do prop
 $ npm install puppeteer
 $ nodemon app.js
 ```
-
