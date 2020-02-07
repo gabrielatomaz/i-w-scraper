@@ -26,8 +26,11 @@ app.get('/', async (req, res, next) => {
 });
 
 app.get('/index', async (req, res, next) => {
-    if (!req.cookies['agency'])
+    if (!req.cookies['agency']) {
         res.redirect('/');
+
+        return;
+    }
 
     res.sendFile(path.join(__dirname + '/views/index.html'));
 });

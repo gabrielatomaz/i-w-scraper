@@ -63,6 +63,8 @@ const login = async (page, account) => {
 
         page = await setPassword(page, account.password);
 
+        await page.waitFor(1000);
+
         return page;
     } catch (error) {
         console.log(error);
