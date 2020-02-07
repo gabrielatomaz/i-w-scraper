@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
 
-
 const { loginScraper } = require("./services/w-scraper.service");
 const { findUser } = require("./controllers/user.controller");
 
