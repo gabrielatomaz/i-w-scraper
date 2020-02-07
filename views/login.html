@@ -79,7 +79,7 @@
                 dataType: 'json',
                 success: (data) => {
                     $('#loader').hide();
-                    location.href = `/index/${$('#agency_account').val()}`;
+                    location.href = `/index`;
                 },
                 error: () => {
                     $('#submit').attr("disabled", false);

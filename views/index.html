@@ -18,11 +18,15 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="https://kit.fontawesome.com/0b09eb1866.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="d-flex justify-content-center" style="margin-top: 13%;">
         <div class="card" style="width: 24rem;">
+            <h5 class="card-header">
+                <button class="btn btn-light float-right" id="logout"><i class="fas fa-sign-out-alt"></i></button>
+            </h5>
             <img class="card-img-top" src="https://i.pinimg.com/originals/4a/34/de/4a34deddc3bf72fff6e3e8723a631f59.jpg"
                 alt="Card image cap">
             <div class="card-body">
@@ -45,6 +49,19 @@
             });
         });
 
+        $('#logout').on('click', () => {
+            console.log('amor??');
+            $.ajax({
+                contentType: 'application/json',
+                dataType: 'json',
+                success: () => {
+                    location.href = `/`;
+                },
+                processData: false,
+                type: 'POST',
+                url: '/api/logout'
+            });
+        });
     </script>
 </body>
 

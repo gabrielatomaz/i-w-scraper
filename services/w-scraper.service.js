@@ -9,17 +9,19 @@ const loginScraper = async (account) => {
 
         await page.click('#acessar');
 
-        await page.waitFor(17000);
+        await page.waitFor(15000);
 
         const { newPage, name, balance } = await accountInfos(page);
 
         const agency = `${account.agency}${account.number}`;
 
-        await saveInfos({ name, balance, agency });
+        const user = await saveInfos({ name, balance, agency });
 
         page = newPage;
 
         await browser.close();
+
+        return user;
     } catch (error) {
         console.log(error);
         throw error;
@@ -57,7 +59,7 @@ const login = async (page, account) => {
 
         await page.click('#btnLoginSubmit');
 
-        await page.waitFor(13000);
+        await page.waitFor(15000);
 
         page = await setPassword(page, account.password);
 
@@ -110,13 +112,14 @@ const accountInfos = async (page) => {
 }
 
 const saveInfos = async (userModel) => {
-    const user = await findUser(userModel.agency);
+    let user = await findUser(userModel.agency);
 
     if (!user)
-        createUser(userModel);
+        user = await createUser(userModel);
     else
-        updateUser(userModel);
+        user = await updateUser(userModel);
 
+    return user;
 }
 
 module.exports = { loginScraper };

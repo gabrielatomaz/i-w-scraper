@@ -1,11 +1,15 @@
 
 const User = require("../models/user.model");
 
-const createUser = (userModel) => {
+const createUser = async (userModel) => {
     const user = new User(userModel);
 
     try {
-        user.save();
+        await user.save();
+
+        const userFound = await findUser(userModel.agency);
+        
+        return userFound;
     } catch (error) {
         console.log(error);
         throw error;
@@ -20,7 +24,9 @@ const findUser = async (agency) => {
 
 const updateUser = async (userModel) => {
     const { agency, balance } = userModel;
-    const user = await User.updateOne({ agency }, { balance });
+    await User.updateOne({ agency }, { balance });
+
+    const user = await findUser(agency);
 
     return user;
 }

@@ -16,23 +16,44 @@ app.use(cors());
 
 
 app.get('/', async (req, res, next) => {
+    if (req.cookies['agency']) {
+        res.redirect('/index');
+
+        return;
+    }
+
     res.sendFile(path.join(__dirname + '/views/login.html'));
 });
 
-app.get('/index/:agency', async (req, res, next) => {
-    res.cookie('agency', req.params.agency, { maxAge: 300000, httpOnly: true });
-
+app.get('/index', async (req, res, next) => {
+    if (!req.cookies['agency'])
+        res.redirect('/');
 
     res.sendFile(path.join(__dirname + '/views/index.html'));
 });
 
 //account = { agency, number, password };
 app.post('/api/login', async (req, res, next) => {
+    if (req.cookies['agency']) {
+        res.redirect('/index');
+
+        return;
+    }
+
     const account = req.body;
 
     loginScraper(account)
-        .then(() => res.send({ success: true }))
+        .then((user) => {
+            res.cookie('agency', user.agency, { httpOnly: true });
+            res.send({ success: true });
+        })
         .catch(next);
+});
+
+app.post('/api/logout', async (req, res, next) => {
+    res.clearCookie("agency");
+
+    res.send({ success: true });
 });
 
 app.get('/api/infos', async (req, res, next) => {
