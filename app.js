@@ -51,7 +51,7 @@ const connect = () => {
         .on('error', console.log);
 
     mongoose.set('useCreateIndex', true);
-    return mongoose.connect("mongodb+srv://gabriela:ribeiro@cluster0-cffl2.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+    return mongoose.connect("mongodb://localhost:27017/i-w-scraper", { useNewUrlParser: true, useUnifiedTopology: true });
 }
 
 connect();
