@@ -18,6 +18,7 @@ A aplicação realiza a autenticação no Banco Itaú e apresenta o nome do prop
 ### Para rodar a aplicação
 
 ```sh
+$ npm install
 $ npm install puppeteer
 $ nodemon app.js
 ```
