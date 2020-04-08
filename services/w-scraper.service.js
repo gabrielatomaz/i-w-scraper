@@ -116,12 +116,7 @@ const accountInfos = async (page) => {
 const saveInfos = async (userModel) => {
     let user = await findUser(userModel.agency);
 
-    if (!user)
-        user = await createUser(userModel);
-    else
-        user = await updateUser(userModel);
-
-    return user;
+    return user ? await updateUser(userModel) : wait createUser(userModel);
 }
 
 module.exports = { loginScraper };
