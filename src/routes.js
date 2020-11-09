@@ -1,14 +1,14 @@
 
 import express from 'express';
-import userController from './controllers/userController.js';
+import UserController from './controllers/userController.js';
 
 const routes = express.Router();
 
-routes.get('/', userController.indexLogin);
-routes.get('/index', userController.index);
+routes.get('/', UserController.indexLogin);
+routes.get('/index', UserController.index);
 //account = { agency, number, password };
-routes.post('/api/login', userController.login);
-routes.post('/api/logout', userController.logout);
-routes.get('/api/infos', userController.listAllInfos);
+routes.post('/api/login', UserController.login);
+routes.post('/api/logout', UserController.logout);
+routes.get('/api/infos', UserController.listAllInfos);
 
 export default routes;
