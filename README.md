@@ -19,5 +19,5 @@ A aplicação realiza a autenticação no Banco Itaú e apresenta o nome do prop
 
 ```sh
 $ npm install
-$ nodemon app.js
+$ npm run dev
 ```
