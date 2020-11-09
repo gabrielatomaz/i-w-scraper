@@ -1,5 +1,5 @@
-const puppeteer = require('puppeteer');
-const { expect } = require('chai');
+import puppeteer from 'puppeteer';
+import { expect } from 'chai';
 
 describe('sample test', async () => {
     let page;

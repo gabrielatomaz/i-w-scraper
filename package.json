@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon src/app.js",
     "test": "mocha --recursive tests"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
